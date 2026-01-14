@@ -25,10 +25,17 @@ pygame.display.set_caption("Maze Game")
 clock = pygame.time.Clock()
 
 # Find start position
+player_pos = None
 for i in range(ROWS):
     for j in range(COLS):
         if maze[i][j] == 'S':
             player_pos = [i, j]
+            break
+    if player_pos:
+        break
+
+if player_pos is None:
+    raise ValueError("No starting position 'S' found in the maze!")
 
 # Draw the maze
 def draw_maze():
